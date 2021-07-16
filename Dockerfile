@@ -1,3 +1,6 @@
 FROM node:lts
 
-RUN apt update && apt install --no-install-recommends -y firefox-esr
+RUN npm install -g @angular/cli
+RUN npm install -g http-server
+
+CMD 
