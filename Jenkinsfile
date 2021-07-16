@@ -1,13 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:14.17.3'
-            args '-p 3000:3000'
-        }
-    }
-    environment {
-        HOME = '.'
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
@@ -16,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'ng test'
             }
         }
         stage('e2e') {
