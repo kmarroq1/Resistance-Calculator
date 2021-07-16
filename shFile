@@ -1,0 +1,3 @@
+ #!/bin/bash
+ng build
+http-server -p 4200
