@@ -14,7 +14,7 @@ pipeline {
         stage('e2e') {
       steps {
         sh 'docker build -t cs6261/server:testimage .'
-        sh 'docker run --name testcontainer -d -v ${PWD}:/app -v/app/node_modules -p 4200:4200 --rm cs6261/server:testimage'
+        sh 'docker run -d -v ${PWD}:/app -v/app/node_modules -p 4200:4200 --rm cs6261/server:testimage --name testcontainer'
         sh './node_modules/protractor/bin/webdriver-manager update'
         sh 'ng e2e --devServerTarget='
       }
@@ -27,8 +27,8 @@ pipeline {
     }
     post {
         always {
-      sh 'docker rmi testimage || true'
-      sh 'docker rm testcontainer || true'
+      sh 'docker rmi -f testimage || true'
+      sh 'docker rm -f testcontainer || true'
         }
     }
 }
