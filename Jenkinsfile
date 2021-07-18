@@ -12,12 +12,12 @@ pipeline {
       }
         }
         stage('e2e') {
-      steps {
-        sh 'docker build -t cs6261/server:testimage .'
-        sh 'docker run -d -v ${PWD}:/app -v/app/node_modules -p 4200:4200 --rm cs6261/server:testimage --name testcontainer'
-        sh './node_modules/protractor/bin/webdriver-manager update'
-        sh 'ng e2e --devServerTarget='
-      }
+          steps {
+            sh 'docker build -t cs6261/server:testimage .'
+            sh 'docker run -d -v ${PWD}:/app -p 4200:4200 --name testcontainer cs6261/server:testimage'
+            sh './node_modules/protractor/bin/webdriver-manager update'
+            sh 'ng e2e --devServerTarget='
+          }
         }
         stage('Deploy') {
       steps {
@@ -27,8 +27,8 @@ pipeline {
     }
     post {
         always {
-      sh 'docker rmi -f testimage || true'
-      sh 'docker rm -f testcontainer || true'
+          sh 'true' //sh 'docker rmi -f testimage || true'
+          // sh 'docker rm -f testcontainer || true'
         }
     }
 }
