@@ -24,8 +24,8 @@ export class ResistanceCalculatorService {
     newFirstBand: number,
     newSecondBand: number,
     newThirdBand: number,
-    newMultiplier: number,
-    newTolerance: number
+    newMultiplier: number | string,
+    newTolerance: number | string
   ): string {
     if (
       newFirstBand < 0 ||
@@ -40,13 +40,17 @@ export class ResistanceCalculatorService {
       throw new Error('Invalid multiplier value');
     } else if (newTolerance < 0.05 || newTolerance > 10) {
       throw new Error('Invalid tolerance value');
+    } else if (typeof newMultiplier === 'string') {
+      this.multiplier = parseFloat(newMultiplier);
+    } else if (typeof newTolerance === 'string') {
+      this.multiplier = parseFloat(newTolerance);
+    } else {
+      this.firstBand = newFirstBand;
+      this.secondBand = newSecondBand;
+      this.thirdBand = newThirdBand;
+      this.multiplier = newMultiplier;
+      this.tolerance = newTolerance;
     }
-    this.firstBand = newFirstBand;
-    this.secondBand = newSecondBand;
-    this.thirdBand = newThirdBand;
-    this.multiplier = newMultiplier;
-    this.tolerance = newTolerance;
-
     var calculatedResistance = this.calculateBandTotal() * this.multiplier;
     if (calculatedResistance === 0) {
       return (this.resistorDescription =

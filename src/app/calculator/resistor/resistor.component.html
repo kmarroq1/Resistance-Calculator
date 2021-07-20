@@ -1,11 +1,81 @@
 <p>test {{ bandCombination.toString() }}</p>
 
-<select
-  (ngModelChange)="onChange()"
-  name="firstBandColor"
-  [(ngModel)]="bandCombination[0]"
->
-  <option *ngFor="let color of sigFigBands" [ngValue]="color">
-    {{ color }}
-  </option>
-</select>
+<div class="border">
+  <div class="row">
+    <div class="column">
+      <div class="small-column">
+        <div class="row">
+          <label>Significant Figures</label>
+        </div>
+
+        <div class="row">
+          <div
+            style="display: inline-block"
+            *ngFor="
+              let amount of firstThreeBands;
+              let i = index;
+              trackBy: trackByFn
+            "
+          >
+            <select
+              (ngModelChange)="onChange()"
+              name="firstBandColor"
+              [(ngModel)]="bandCombination[i]"
+            >
+              <option *ngFor="let color of sigFigBandColors" [ngValue]="color">
+                {{ color }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-column">
+        <div style="float: left">
+          <div class="row">
+            <label>Multiplier</label>
+          </div>
+
+          <div class="row">
+            <select
+              (ngModelChange)="onChange()"
+              name="firstBandColor"
+              [(ngModel)]="bandCombination[3]"
+            >
+              <option *ngFor="let color of multiplier[1]" [ngValue]="color">
+                {{ color }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div style="float: right">
+          <div class="row">
+            <label>Tolerance</label>
+          </div>
+
+          <div class="row">
+            <select
+              (ngModelChange)="onChange()"
+              name="firstBandColor"
+              [(ngModel)]="bandCombination[4]"
+            >
+              <option *ngFor="let color of tolerance[1]" [ngValue]="color">
+                {{ color }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="row">
+        <p>Resistor Graphic Placeholder</p>
+      </div>
+      <div class="row">
+        <h3>Resistance: {{ resistanceDisplay }}</h3>
+      </div>
+    </div>
+  </div>
+</div>
