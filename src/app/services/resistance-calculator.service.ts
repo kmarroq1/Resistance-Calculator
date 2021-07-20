@@ -38,7 +38,7 @@ export class ResistanceCalculatorService {
       throw new Error('Invalid band value');
     } else if (newMultiplier < 0) {
       throw new Error('Invalid multiplier value');
-    } else if (newTolerance < 0.05 || newTolerance > 20) {
+    } else if (newTolerance < 0.05 || newTolerance > 10) {
       throw new Error('Invalid tolerance value');
     }
     this.firstBand = newFirstBand;
@@ -48,10 +48,13 @@ export class ResistanceCalculatorService {
     this.tolerance = newTolerance;
 
     var calculatedResistance = this.calculateBandTotal() * this.multiplier;
+    if (calculatedResistance === 0) {
+      return (this.resistorDescription =
+        this.significantFigures(calculatedResistance) + ' Ohms');
+    }
     this.resistorDescription =
       this.significantFigures(calculatedResistance) +
-      this.determineUnits() +
-      ' +/-' +
+      ' Ohms +/- ' +
       this.tolerance +
       '%';
 
@@ -72,29 +75,5 @@ export class ResistanceCalculatorService {
     var digits: number = newBandTotal.toString().length;
     var preciseCalculation: string = resistanceCalculation.toPrecision(digits);
     return preciseCalculation;
-  }
-
-  determineUnits(): string {
-    var unit: string = '';
-    if (this.firstBand === 0 && this.secondBand === 0 && this.thirdBand === 0) {
-      unit = ' Ohms';
-    } else if (
-      this.multiplier === 1000 ||
-      this.multiplier === 10000 ||
-      this.multiplier === 100000
-    ) {
-      unit = 'k Ohms';
-    } else if (
-      this.multiplier === 1000000 ||
-      this.multiplier === 10000000 ||
-      this.multiplier === 100000000
-    ) {
-      unit = 'M Ohms';
-    } else if (this.multiplier === 1000000000) {
-      unit = 'G Ohms';
-    } else {
-      unit = ' Ohms';
-    }
-    return unit;
   }
 }
