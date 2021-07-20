@@ -1,11 +1,11 @@
-<p>test {{ bandCombination }}</p>
-<form onChange()>
-  <select name="firstBandColor" [(ngModel)]="bandCombination[0]">
-    <option
-      *ngFor="let value of sigFigBands; let i = index; trackBy: trackByFn"
-      value="{{ sigFigBands[i] }}"
-    >
-      {{ sigFigBands[i] }}
-    </option>
-  </select>
-</form>
+<p>test {{ bandCombination.toString() }}</p>
+
+<select
+  (ngModelChange)="onChange()"
+  name="firstBandColor"
+  [(ngModel)]="bandCombination[0]"
+>
+  <option *ngFor="let color of sigFigBands" [ngValue]="color">
+    {{ color }}
+  </option>
+</select>

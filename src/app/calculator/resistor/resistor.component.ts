@@ -51,7 +51,7 @@ export class ResistorComponent implements OnInit {
     ];
 
     this.resistanceDisplay = '0 Ohms';
-    this.bandCombination = ['', '', '', '', ''];
+    this.bandCombination = ['black', 'black', 'black', 'black', 'brown'];
   }
 
   onChange() {}
