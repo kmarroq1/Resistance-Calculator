@@ -119,5 +119,12 @@ describe('ResistanceCalculatorService', () => {
     expect(service.calculateResistance(5, 5, 5, 100000000, 10)).toEqual(
       '5.55e+10 Ohms +/- 10%'
     );
+    expect(service.calculateResistance(0, 5, 5, 100000000, 10)).toEqual(
+      '5.5e+9 Ohms +/- 10%'
+    );
+    expect(service.calculateResistance(0, 0, 5, 100000000, 10)).toEqual(
+      '5e+8 Ohms +/- 10%'
+    );
   });
+
 });
