@@ -86,8 +86,7 @@ export class ResistorComponent implements OnInit {
         fifthBand
       );
     } catch (exception) {
-      this.resistanceDisplay = exception;
-      console.error(this.resistanceDisplay);
+      this.resistanceDisplay = exception.toString();
     }
   }
 
