@@ -31,6 +31,7 @@ describe('Registration Tests', function() {
     page.selectOption('band2', '[value~="orange"]');
     page.selectOption('band3', '[value~="yellow"]');
     page.selectOption('band4', '[value~="green"]');
+    page.selectOption('band4', '[value~="green"]');
     expect(page.getTextById('test')).toEqual('test: brown,red,orange,yellow,green');
     expect(page.getTextById('message')).toEqual('Resistance: 1.23e+6 Ohms +/- 0.5%');
   });

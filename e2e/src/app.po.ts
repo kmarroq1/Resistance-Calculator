@@ -6,7 +6,7 @@ export class AppPage {
   }
 
   selectOption(id: string, optionValue: string) {
-    return element(by.id(id)).$(optionValue).click();
+    element(by.id(id)).$(optionValue).click();
   }
 
   getTextByCss(css:string) {
