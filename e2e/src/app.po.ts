@@ -5,8 +5,8 @@ export class AppPage {
     return browser.get('/') as Promise<any>;
   }
 
-  selectOption(bandColor:string) {
-    return element(by.cssContainingText('option', 'BeaverBox Testing')).click();
+  selectOption(id: string, optionValue: string) {
+    return element(by.id(id)).$(optionValue).click();
   }
 
   getTextByCss(css:string) {

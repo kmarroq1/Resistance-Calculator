@@ -17,12 +17,13 @@
               trackBy: trackByFn
             "
           >
-            <select id="band{{i}}"
+            <select
+              id="band{{ i }}"
               (ngModelChange)="onChange()"
               name="firstBandColor"
               [(ngModel)]="bandCombination[i]"
             >
-              <option *ngFor="let color of sigFigBandColors" [ngValue]="color">
+              <option (click)="onChange()" *ngFor="let color of sigFigBandColors" [ngValue]="color">
                 {{ color }}
               </option>
             </select>
@@ -37,12 +38,12 @@
           </div>
 
           <div class="row">
-            <select
+            <select id="band3"
               (ngModelChange)="onChange()"
               name="firstBandColor"
               [(ngModel)]="bandCombination[3]"
             >
-              <option *ngFor="let color of multiplier[1]" [ngValue]="color">
+              <option (click)="onChange()" *ngFor="let color of multiplier[1]" [ngValue]="color">
                 {{ color }}
               </option>
             </select>
@@ -55,12 +56,12 @@
           </div>
 
           <div class="row">
-            <select
+            <select id="band4"
               (ngModelChange)="onChange()"
               name="firstBandColor"
               [(ngModel)]="bandCombination[4]"
             >
-              <option *ngFor="let color of tolerance[1]" [ngValue]="color">
+              <option (click)="onChange()" *ngFor="let color of tolerance[1]" [ngValue]="color">
                 {{ color }}
               </option>
             </select>
