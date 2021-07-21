@@ -9,9 +9,7 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('cs6261project4 app is running!');
+    page.loadPage();
+    expect(page.getTextByCss('app-root h1')).toEqual('The 5-Band Resistance Calculator');
   });
-
-
 });

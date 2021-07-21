@@ -1,4 +1,4 @@
-<p>test {{ bandCombination.toString() }}</p>
+<p id="test">test: {{ bandCombination.toString() }}</p>
 
 <div class="border">
   <div class="row">
@@ -17,7 +17,7 @@
               trackBy: trackByFn
             "
           >
-            <select
+            <select id="band{{i}}"
               (ngModelChange)="onChange()"
               name="firstBandColor"
               [(ngModel)]="bandCombination[i]"
@@ -74,7 +74,7 @@
         <p>Resistor Graphic Placeholder</p>
       </div>
       <div class="row">
-        <h3>Resistance: {{ resistanceDisplay }}</h3>
+        <h3 id="message">Resistance: {{ resistanceDisplay }}</h3>
       </div>
     </div>
   </div>
