@@ -22,7 +22,11 @@ pipeline {
         }
         stage('Deploy') {
           steps {
-            echo 'Not yet implemented'
+            sh 'docker build -t cs6261/server:productimage .'
+            sh 'docker run -d -v ${PWD}:/app -p 5000:4200 --name productcontainer cs6261/server:testimage'
+            sleep 30
+            sh './node_modules/protractor/bin/webdriver-manager update'
+            sh 'ng e2e --devServerTarget='
           }
         }
     }
